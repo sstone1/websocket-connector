@@ -1,3 +1,17 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ibm.connectors.websocket;
 
 import java.io.IOException;
@@ -15,11 +29,9 @@ import org.eclipse.jetty.websocket.client.WebSocketClient;
 import com.ibm.connectors.AbstractInputConnector;
 import com.ibm.connectors.ConnectorException;
 
-public class WebSocketInputConnector extends AbstractInputConnector implements
-		Runnable {
+public class WebSocketInputConnector extends AbstractInputConnector implements Runnable {
 
-	private final static String className = WebSocketInputConnector.class
-			.getName();
+	private final static String className = WebSocketInputConnector.class.getName();
 
 	private final AtomicBoolean started = new AtomicBoolean();
 	private Thread thread = null;
@@ -71,8 +83,7 @@ public class WebSocketInputConnector extends AbstractInputConnector implements
 			thread.join();
 			getLogger().fine("Connection monitor thread finished");
 		} catch (InterruptedException e) {
-			getLogger().fine(
-					"Error waiting for connection monitor thread: " + e);
+			getLogger().fine("Error waiting for connection monitor thread: " + e);
 		}
 
 		// Close any remaining connections.
@@ -138,16 +149,13 @@ public class WebSocketInputConnector extends AbstractInputConnector implements
 			@Override
 			public void onWebSocketConnect(Session sess) {
 				super.onWebSocketConnect(sess);
-				getLogger().info(
-						"Established WebSocket connection (" + uriProp + ")");
+				getLogger().info("Established WebSocket connection (" + uriProp + ")");
 			}
 
 			@Override
 			public void onWebSocketClose(int statusCode, String reason) {
 				super.onWebSocketClose(statusCode, reason);
-				getLogger().warning(
-						"WebSocket connection (" + uriProp + ") closed: "
-								+ statusCode + " " + reason);
+				getLogger().warning("WebSocket connection (" + uriProp + ") closed: " + statusCode + " " + reason);
 				disconnect();
 				synchronized (waiter) {
 					waiter.notify();
@@ -157,9 +165,7 @@ public class WebSocketInputConnector extends AbstractInputConnector implements
 			@Override
 			public void onWebSocketError(Throwable cause) {
 				super.onWebSocketError(cause);
-				getLogger().severe(
-						"WebSocket connection (" + uriProp + ") error: "
-								+ cause);
+				getLogger().severe("WebSocket connection (" + uriProp + ") error: " + cause);
 				disconnect();
 				synchronized (waiter) {
 					waiter.notify();
@@ -193,9 +199,7 @@ public class WebSocketInputConnector extends AbstractInputConnector implements
 		} catch (InterruptedException e) {
 			getLogger().fine("Interrupted");
 		} catch (ExecutionException | IOException e) {
-			getLogger().severe(
-					"Failed to establish WebSocket connection (" + uriProp
-							+ "): " + e);
+			getLogger().severe("Failed to establish WebSocket connection (" + uriProp + "): " + e);
 		}
 
 		getLogger().exiting(className, methodName);
