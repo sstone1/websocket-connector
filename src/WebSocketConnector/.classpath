@@ -8,5 +8,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="lib" path="cmnCon.jar"/>
+	<classpathentry kind="lib" path="jetty-io.jar"/>
+	<classpathentry kind="lib" path="jetty-util.jar"/>
+	<classpathentry kind="lib" path="websocket-api.jar"/>
+	<classpathentry kind="lib" path="websocket-client.jar"/>
+	<classpathentry kind="lib" path="websocket-common.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
