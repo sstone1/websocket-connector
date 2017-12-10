@@ -24,6 +24,8 @@ Copy the downloaded file into this directory, and restart the integration toolki
 
 ## Configuration
 
+![WebSocketInput](https://github.com/sstone1/websocket-connector/raw/master/src/WebSocketNodes/icons/full/obj32/com/ibm/connector/websocket/ComIbmEventInput.gif)
+
 The WebSocketInput node has the following properties. 
 
 ### Basic tab
